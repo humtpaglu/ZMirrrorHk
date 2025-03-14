@@ -374,7 +374,7 @@ async def get_user_settings(from_user):
 
     text = f"""
 <u>Settings for {name}</u>
-
+<blockquote>
 <code>TG Premium Status:</code> <b>{IS_PREMIUM_USER}</b>
 
 <code>Leech Type       :</code> <b>{ltype}</b>
@@ -406,6 +406,7 @@ async def get_user_settings(from_user):
 <code>Name Substitute  :</code> <b>{ns_msg}</b>
 <code>Extension Filter :</code> <b>{ex_ex}</b>
 <code>YT-DLP Options   :</code> <b>{escape(ytopt)}</b>
+</blockquote>
 """
 
     return (
@@ -982,7 +983,7 @@ async def edit_user_settings(client, query):
         )
         text = f"""
 <b><u>Leech Settings for {name}</u></b>
-
+<blockquote>
 <code>Leech Type       :</code> <b>{ltype}</b>
 <code>Leech Split Size :</code> <b>{split_size}</b>
 <code>Leech Prefix     :</code> <b>{escape(lprefix)}</b>
@@ -998,6 +999,7 @@ async def edit_user_settings(client, query):
 <code>Media Group      :</code> <b>{media_group}</b>
 <code>Upload Client    :</code> <b>{leech_method} session</b>
 <code>Hybrid Upload    :</code> <b>{mixed_leech}</b>
+</blockquote>
 """
         await edit_message(
             message,
@@ -1041,9 +1043,10 @@ async def edit_user_settings(client, query):
             rccpath = "None"
         text = f"""
 <b><u>Rclone Settings for {name}</u></b>
-
+<blockquote>
 <code>Rclone Config :</code> <b>{rccmsg}</b>
 <code>Rclone Path   :</code> <b>{rccpath}</b>
+</blockquote>
 """
         await edit_message(
             message,
@@ -1118,13 +1121,14 @@ async def edit_user_settings(client, query):
         )
         text = f"""
 <b><u>Gdrive Tools Settings for {name}</u></b>
-
+<blockquote>
 <code>Gdrive Token   :</code> <b>{tokenmsg}</b>
 
 <code>Gdrive ID      :</code> <b>{gdrive_id}</b>
 <code>Index Link     :</code> <b>{index}</b>
 
 <code>Stop Duplicate :</code> <b>{sd_msg}</b>
+</blockquote>
 """
         await edit_message(
             message,
