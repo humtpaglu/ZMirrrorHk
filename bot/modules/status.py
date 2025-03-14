@@ -297,32 +297,30 @@ async def stats(_, message, edit_mode=False):
     mem_p = memory.percent
     swap = swap_memory()
 
-    bot_stats = f"<b><i><u>Zee Bot Statistics</u></i></b>\n\n"\
-                f"<code>CPU  : </code>{get_progress_bar_string(cpuUsage)} {cpuUsage}%\n" \
-                f"<code>RAM  : </code>{get_progress_bar_string(mem_p)} {mem_p}%\n" \
-                f"<code>SWAP : </code>{get_progress_bar_string(swap.percent)} {swap.percent}%\n" \
-                f"<code>DISK : </code>{get_progress_bar_string(disk)} {disk}%\n\n" \
-                f"<code>Bot Uptime      : </code> {botTime}\n" \
-                f"<code>BOT Restart     : </code> {res_time}\n\n" \
-                f"<code>Uploaded        : </code> {sent}\n" \
-                f"<code>Downloaded      : </code> {recv}\n" \
-                f"<code>Total Bandwidth : </code> {tb}"
+    bot_stats = f"<b><i><u>Zee Bot Statistics</u></i></b>\n\n<pre>"\
+            f"CPU  : {get_progress_bar_string(cpuUsage)} {cpuUsage}%\n" \
+            f"RAM  : {get_progress_bar_string(mem_p)} {mem_p}%\n" \
+            f"SWAP : {get_progress_bar_string(swap.percent)} {swap.percent}%\n" \
+            f"DISK : {get_progress_bar_string(disk)} {disk}%\n\n" \
+            f"Bot Uptime      : {botTime}\n" \
+            f"BOT Restart     : {res_time}\n\n" \
+            f"Uploaded        : {sent}\n" \
+            f"Downloaded      : {recv}\n" \
+            f"Total Bandwidth : {tb}</pre>"
 
-    sys_stats = f"<b><i><u>Zee System Statistics</u></i></b>\n\n"\
-                f"<b>System Uptime:</b> <code>{sysTime}</code>\n" \
-                f"<b>CPU:</b> {get_progress_bar_string(cpuUsage)}<code> {cpuUsage}%</code>\n" \
-                f"<b>CPU Total Core(s):</b> <code>{cpu_count(logical=True)}</code>\n" \
-                f"<b>P-Core(s):</b> <code>{cpu_count(logical=False)}</code> | " \
-                f"<b>V-Core(s):</b> <code>{v_core}</code>\n" \
-                f"<b>Frequency:</b> <code>{frequency} GHz</code>\n\n" \
-                f"<b>RAM:</b> {get_progress_bar_string(mem_p)}<code> {mem_p}%</code>\n" \
-                f"<b>Total:</b> <code>{get_readable_file_size(memory.total)}</code> | " \
-                f"<b>Free:</b> <code>{get_readable_file_size(memory.available)}</code>\n\n" \
-                f"<b>SWAP:</b> {get_progress_bar_string(swap.percent)}<code> {swap.percent}%</code>\n" \
-                f"<b>Total</b> <code>{get_readable_file_size(swap.total)}</code> | " \
-                f"<b>Free:</b> <code>{get_readable_file_size(swap.free)}</code>\n\n" \
-                f"<b>DISK:</b> {get_progress_bar_string(disk)}<code> {disk}%</code>\n" \
-                f"<b>Total:</b> <code>{total}</code> | <b>Free:</b> <code>{free}</code>"
+   sys_stats = f"<b><i><u>Zee System Statistics</u></i></b>\n\n<pre>"\
+            f"System Uptime  : {sysTime}\n" \
+            f"CPU Usage      : {get_progress_bar_string(cpuUsage)} {cpuUsage}%\n" \
+            f"CPU Total Core : {cpu_count(logical=True)}\n" \
+            f"P-Core(s)      : {cpu_count(logical=False)} | V-Core(s): {v_core}\n" \
+            f"Frequency      : {frequency} GHz\n\n" \
+            f"RAM Usage      : {get_progress_bar_string(mem_p)} {mem_p}%\n" \
+            f"Total RAM      : {get_readable_file_size(memory.total)} | Free: {get_readable_file_size(memory.available)}\n\n" \
+            f"SWAP Usage     : {get_progress_bar_string(swap.percent)} {swap.percent}%\n" \
+            f"Total SWAP     : {get_readable_file_size(swap.total)} | Free: {get_readable_file_size(swap.free)}\n\n" \
+            f"DISK Usage     : {get_progress_bar_string(disk)} {disk}%\n" \
+            f"Total DISK     : {total} | Free: {free}</pre>"
+
 
     buttons.data_button(
         "ꜱʏꜱᴛᴇᴍ\nꜱᴛᴀᴛꜱ",
