@@ -191,8 +191,8 @@ def get_progress_bar_string(pct):
         100
     )
     cFull = int(p // 10)
-    p_str = "█" * cFull
-    p_str += "▒" * (10 - cFull)
+    p_str = "⬢" * cFull
+    p_str += "⬡" * (10 - cFull)
     return f"{p_str}"
 
 
@@ -252,14 +252,14 @@ async def get_readable_message(
             and int(config_dict["AUTO_DELETE_MESSAGE_DURATION"]) > 0
         ):
             msg += (
-                f"<b><i>\n#Zee{index + start_position}: "
+                f"<b><i>\n#Max{index + start_position}: "
                 f"{escape(f"{task.name()}")}\n</i></b>"
                 if elapse <= config_dict["AUTO_DELETE_MESSAGE_DURATION"]
-                else f"\n<b>#Zee{index + start_position}...(Processing)</b>"
+                else f"\n<b>#Max{index + start_position}...(Processing)</b>"
             )
         else:
             msg += (
-                f"<b><i>\n#Zee{index + start_position}: "
+                f"<b><i>\n#Max{index + start_position}: "
                 f"{escape(f"{task.name()}")}\n</i></b>"
             )
         if tstatus not in [
@@ -275,15 +275,15 @@ async def get_readable_message(
             )
             msg += (
                 f"\n{get_progress_bar_string(progress)} » <b><i>{progress}</i></b>"
-                f"\n<code>Status :</code> <b>{tstatus}</b>"
-                f"\n<code>Done   :</code> {task.processed_bytes()} of {task.size()}"
-                f"\n<code>Speed  :</code> {task.speed()}"
-                f"\n<code>ETA    :</code> {task.eta()}"
-                f"\n<code>Past   :</code> {elapsed}"
-                f"\n<code>User   :</code> <b>{user_tag}</b>"
-                f"\n<code>UserID :</code> ||{task.listener.user_id}||"
-                f"\n<code>Upload :</code> {task.listener.mode}"
-                f"\n<code>Engine :</code> <b><i>{task.engine}</i></b>"
+                f"\n<code>📡Status :</code> <b>{tstatus}</b>"
+                f"\n<code>🦧Done   :</code> {task.processed_bytes()} of {task.size()}"
+                f"\n<code>📊Speed  :</code> {task.speed()}"
+                f"\n<code>🗽ETA    :</code> {task.eta()}"
+                f"\n<code>⏳Past   :</code> {elapsed}"
+                f"\n<code>🔖User   :</code> <b>{user_tag}</b>"
+                f"\n<code>🔖UserID :</code> ||{task.listener.user_id}||"
+                f"\n<code>🗿Upload :</code> {task.listener.mode}"
+                f"\n<code>🌐Engine :</code> <b><i>{task.engine}</i></b>"
             )
             if hasattr(
                 task,
@@ -304,21 +304,21 @@ async def get_readable_message(
                     pass
         elif tstatus == MirrorStatus.STATUS_SEEDING:
             msg += (
-                f"\n<code>Size   : </code>{task.size()}"
-                f"\n<code>Speed  : </code>{task.seed_speed()}"
-                f"\n<code>Upload : </code>{task.uploaded_bytes()}"
-                f"\n<code>Ratio  : </code>{task.ratio()}"
-                f"\n<code>Time   : </code>{task.seeding_time()}"
+                f"\n<code>📁Size   : </code>{task.size()}"
+                f"\n<code>🔖Speed  : </code>{task.seed_speed()}"
+                f"\n<code>📤Upload : </code>{task.uploaded_bytes()}"
+                f"\n<code>📌Ratio  : </code>{task.ratio()}"
+                f"\n<code>⏳Time   : </code>{task.seeding_time()}"
             )
         else:
             msg += (
-                f"\n<code>Status :</code> <b>{tstatus}</b>"
-                f"\n<code>Size   :</code> {task.size()}"
-                f"\n<code>Upload :</code> {task.listener.mode}"
-                f"\n<code>Past   :</code> {elapsed}"
-                f"\n<code>User   :</code> {user_tag}"
-                f"\n<code>UserID :</code> ||{task.listener.user_id}||"
-                f"\n<code>Engine :</code> {task.engine}"
+                f"\n<code>📡Status :</code> <b>{tstatus}</b>"
+                f"\n<code>📊Size   :</code> {task.size()}"
+                f"\n<code>📥Upload :</code> {task.listener.mode}"
+                f"\n<code>📖Past   :</code> {elapsed}"
+                f"\n<code>🗽User   :</code> {user_tag}"
+                f"\n<code>🗿UserID :</code> ||{task.listener.user_id}||"
+                f"\n<code>🌐Engine :</code> {task.engine}"
             )
         msg += f"\n⚠️ {cancel_task}\n\n"
 
@@ -395,17 +395,17 @@ async def get_readable_message(
     button = buttons.build_menu(8)
     msg += (
         "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n"
-        f"<b>CPU</b>: {cpu_percent()}% | "
-        f"<b>FREE</b>: {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}\n"
-        f"<b>RAM</b>: {virtual_memory().percent}% | "
-        f"<b>UPTM</b>: {get_readable_time(time() - bot_start_time)}"
+        f"<b>💳CPU</b>: {cpu_percent()}% | "
+        f"<b>🗣️FREE</b>: {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}\n"
+        f"<b>🗻RAM</b>: {virtual_memory().percent}% | "
+        f"<b>🛫UPTM</b>: {get_readable_time(time() - bot_start_time)}"
     )
     remaining_time = 86400 - (time() - bot_start_time)
     if remaining_time < 3600:
         if remaining_time > 0:
             msg += f"\n\n<b><i>Bot Restarts In: {get_readable_time(remaining_time)}</i></b>"
         else:
-            msg += f"\n\n<b><i>⚠️ BOT WILL RESTART ANYTIME ⚠️</i></b>"
+            msg += f"\n\n<b><i>⚠️💀 BOT WILL RESTART ANYTIME 💀⚠️</i></b>"
     return (
         msg,
         button
