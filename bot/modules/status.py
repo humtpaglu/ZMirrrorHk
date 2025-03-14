@@ -491,17 +491,18 @@ async def send_repo_stats(_, query):
             if version != vtag:
                 update_info =  f"⚠️ New Version Update Available ⚠️"
 
-    repo_stats = f"<b><i><u>Zee Repository Info</u></i></b> \n\n" \
-                 f"<b><i>Official Repository</i></b>        \n"   \
-                 f"<code>- Updated   : </code> {commit_date}\n"   \
-                 f"<code>- Version   : </code> {vtag}       \n"   \
-                 f"<code>- Changelog : </code> {c_log}      \n"   \
-                 f"<code>- Desc      : </code> {d_log}      \n\n" \
-                 f"<b><i>Bot Repository</i></b>             \n"   \
-                 f"<code>- Updated   : </code> {last_commit}\n"   \
-                 f"<code>- Version   : </code> {version}    \n"   \
-                 f"<code>- Changelog : </code> {change_log} \n\n" \
-                 f"<b>{update_info}</b>"
+    repo_stats = f"<b><i><u>Zee Repository Info</u></i></b>\n\n<pre>" \
+             f"Official Repository:\n" \
+             f"- Updated   : {commit_date}\n" \
+             f"- Version   : {vtag}\n" \
+             f"- Changelog : {c_log}\n" \
+             f"- Desc      : {d_log}\n\n" \
+             f"Bot Repository:\n" \
+             f"- Updated   : {last_commit}\n" \
+             f"- Version   : {version}\n" \
+             f"- Changelog : {change_log}\n\n" \
+             f"{update_info}</pre>"
+
 
     buttons.data_button(
         "ʙᴏᴛ\nꜱᴛᴀᴛꜱ", 
